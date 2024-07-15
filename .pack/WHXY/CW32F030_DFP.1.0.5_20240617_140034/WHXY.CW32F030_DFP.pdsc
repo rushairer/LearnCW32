@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>WHXY</vendor>
+  <url></url> 
+  <name>CW32F030_DFP</name>
+  <description>CW32 ARM Cortex-M0+ Device Family Pack</description>
+  <url></url>
+  
+  <releases>
+    <release version="1.0.5" date="2024-01-15">
+        Updated Keil pack file
+    </release>	
+    <release version="1.0.4" date="2023-06-7">
+        modify SVD
+    </release>
+    <release version="1.0.3" date="2022-06-23">
+        modify SVD
+    </release>
+    <release version="1.0.2" date="2022-06-23">
+        Added device:CW32F030K8,CW32F030F8
+    </release>
+    <release version="1.0.1" date="2022-03-22">
+        Added device:CW32F030F6
+    </release>
+    <release version="1.0.0" date="2021-11-12">
+        Initial Version
+    </release>
+  </releases>
+ 
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>WHXY</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package CW32</keyword>
+    <keyword>CW32F030</keyword>
+  </keywords>
+  <!-- devices section (mandatory for Device Family Packs) -->  
+  <devices>
+    <family Dfamily="CW32F0 Series" Dvendor="WHXY">
+    <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="8000000" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+    <description>
+        The CW32F030 device family contains an ARM Cortex-M0+ processor, running up to 64 MHz with a versatile set of on-chip peripherals.
+    </description>
+    
+    <subFamily DsubFamily="CW32F030">
+      <device Dname="CW32F030C8">
+	    <processor  Dclock="8000000"/>   
+	    <compile    header="Device/Include/CW32F030.h"/>
+        <debug      svd="SVD/CW32F030.svd"/>    
+        <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x10000"     startup="1"   default="1"/>
+        <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x02000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/FlashCW32F030.FLM"    start="0x00000000"  size="0x10000"                   default="1"/>	        
+      </device>
+      <device Dname="CW32F030K8">
+	    <processor  Dclock="8000000"/>   
+	    <compile    header="Device/Include/CW32F030.h"/>
+        <debug      svd="SVD/CW32F030.svd"/>    
+        <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x10000"     startup="1"   default="1"/>
+        <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x02000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/FlashCW32F030.FLM"    start="0x00000000"  size="0x10000"                   default="1"/>	        
+      </device>	  
+	  <device Dname="CW32F030F8">
+	    <processor  Dclock="8000000"/>   
+	    <compile    header="Device/Include/CW32F030.h"/>
+        <debug      svd="SVD/CW32F030.svd"/>    
+        <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x10000"     startup="1"   default="1"/>
+        <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x02000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/FlashCW32F030.FLM"    start="0x00000000"  size="0x10000"                   default="1"/>	        
+      </device>	  
+      <device Dname="CW32F030F6">
+	    <processor  Dclock="8000000"/>   
+	    <compile    header="Device/Include/CW32F030.h"/>
+        <debug      svd="SVD/CW32F030.svd"/>    
+        <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x8000"     startup="1"   default="1"/>
+        <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x02000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/FlashCW32F030.FLM"    start="0x00000000"  size="0x10000"                   default="1"/>	        
+      </device>         
+    </subFamily>    
+    </family>  
+  </devices>
+
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+
+  </conditions>  
+  
+ 
+  <!-- component section (optional for all Software Packs)-->	
+  <components> 
+    
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" >
+        <description>System Startup for CW32F030 Series</description>
+        <files>	
+        <!--  include folder -->
+        <file category="include" name="Device/Include/"/>
+		
+		<!-- common device header file -->
+        <file category="header" name="Device/Include/CW32F030.h"/>
+
+        <!-- startup files -->
+        <!-- ARM Compiler Toolchain -->
+        <file category="source" name="Device/Source/ARM/startup_CW32F030.s" attr="config" version="1.0.0"/>	        
+		<file category="source"  name="Device/Source/system_CW32F030.c"  attr="config" version="1.0.0"/>
+        </files>
+    </component> 
+ 	
+  </components> 	
+	
+</package>

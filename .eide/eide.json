@@ -1,0 +1,92 @@
+{
+  "name": "LearnCW32",
+  "type": "ARM",
+  "dependenceList": [],
+  "srcDirs": [
+    "src",
+    "Libraries"
+  ],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": []
+  },
+  "outDir": "build",
+  "deviceName": "CW32F030C8",
+  "packDir": ".pack/WHXY/CW32F030_DFP.1.0.5_20240617_140034",
+  "miscInfo": {
+    "uid": "7463a5c41e2965ce14d18044b8228e13"
+  },
+  "targets": {
+    "Debug": {
+      "excludeList": [
+        "Libraries/src/cw32f030_adc.c",
+        "Libraries/src/cw32f030_atim.c",
+        "Libraries/src/cw32f030_awt.c",
+        "Libraries/src/cw32f030_btim.c",
+        "Libraries/src/cw32f030_crc.c",
+        "Libraries/src/cw32f030_debug.c",
+        "Libraries/src/cw32f030_digitalsign.c",
+        "Libraries/src/cw32f030_dma.c",
+        "Libraries/src/cw32f030_gtim.c",
+        "Libraries/src/cw32f030_i2c.c",
+        "Libraries/src/cw32f030_iwdt.c",
+        "Libraries/src/cw32f030_lvd.c",
+        "Libraries/src/cw32f030_pwr.c",
+        "Libraries/src/cw32f030_ram.c",
+        "Libraries/src/cw32f030_rtc.c",
+        "Libraries/src/cw32f030_spi.c",
+        "Libraries/src/cw32f030_vc.c",
+        "Libraries/src/cw32f030_wwdt.c"
+      ],
+      "toolchain": "GCC",
+      "compileConfig": {
+        "cpuType": "Cortex-M0+",
+        "floatingPointHardware": "none",
+        "scatterFilePath": "",
+        "useCustomScatterFile": true,
+        "storageLayout": {
+          "RAM": [],
+          "ROM": []
+        },
+        "options": "null"
+      },
+      "uploader": "STLink",
+      "uploadConfig": {
+        "bin": "",
+        "proType": "SWD",
+        "resetMode": "default",
+        "runAfterProgram": true,
+        "speed": 4000,
+        "address": "0x08000000",
+        "elFile": "None",
+        "optionBytes": ".eide/debug.st.option.bytes.ini",
+        "otherCmds": ""
+      },
+      "uploadConfigMap": {
+        "JLink": {
+          "bin": "",
+          "baseAddr": "",
+          "cpuInfo": {
+            "vendor": "null",
+            "cpuName": "null"
+          },
+          "proType": 1,
+          "speed": 8000,
+          "otherCmds": ""
+        }
+      },
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          ".",
+          "Libraries/inc",
+          "cmsis/include"
+        ],
+        "libList": [],
+        "defineList": []
+      }
+    }
+  },
+  "version": "3.4"
+}
