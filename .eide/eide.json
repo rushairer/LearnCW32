@@ -43,7 +43,7 @@
       "compileConfig": {
         "cpuType": "Cortex-M0+",
         "floatingPointHardware": "none",
-        "scatterFilePath": "",
+        "scatterFilePath": "./CW32F030_FLASH.ld",
         "useCustomScatterFile": true,
         "storageLayout": {
           "RAM": [],

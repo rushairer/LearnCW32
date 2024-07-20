@@ -32,11 +32,11 @@ int main(void)
         // 高电平
         GPIO_WritePin(CW_GPIOC, GPIO_PIN_13, GPIO_Pin_SET);
         printf("[SET]\r\n");
-        delay_ms(100);
+        delay_ms(1000);
 
         // 低电平
         GPIO_WritePin(CW_GPIOC, GPIO_PIN_13, GPIO_Pin_RESET);
         printf("[RESET]\r\n");
-        delay_ms(100);
+        delay_ms(1000);
     }
 }

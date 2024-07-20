@@ -9,7 +9,7 @@
 ; Stack Configuration
 ; Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 
-Stack_Size      EQU     0x00000200
+Stack_Size      EQU     0x00000400
 
                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
 Stack_Mem       SPACE   Stack_Size
@@ -38,7 +38,7 @@ __heap_limit
                 EXPORT  __Vectors_End
                 EXPORT  __Vectors_Size
 
-__Vectors                       
+__Vectors
                 DCD     __initial_sp              ; Top of Stack
                 DCD     Reset_Handler             ;< -15 Reset Vector, invoked on Power up and warm reset
                 DCD     NMI_Handler               ;< -14 Non maskable Interrupt, cannot be stopped or preempted
@@ -89,7 +89,7 @@ __Vectors
                 DCD     AWT_IRQHandler            ;< 30 Auto Wakeup Timer Handler
                 DCD     FAULT_IRQHandler          ;< 31 FAULT Interrupt Handler
 
-                
+
 
 __Vectors_End
 
@@ -103,7 +103,11 @@ __Vectors_Size 	EQU     __Vectors_End - __Vectors
 Reset_Handler   PROC
                 EXPORT  Reset_Handler             [WEAK]
                 IMPORT  SystemInit
-                IMPORT  __main               
+                IMPORT  __main
+
+                LDR     R1, =0x0
+                LDR     R0, [R1]
+                MOV     SP, R0
 
                 LDR     R0, =SystemInit
                 BLX     R0
@@ -118,8 +122,8 @@ NMI_Handler     PROC
                 EXPORT  NMI_Handler               [WEAK]
                 B       .
                 ENDP
-                
-                
+
+
 HardFault_Handler\
                 PROC
                 EXPORT  HardFault_Handler         [WEAK]
@@ -203,9 +207,9 @@ UART1_IRQHandler
 UART2_IRQHandler
 UART3_IRQHandler
 AWT_IRQHandler
-FAULT_IRQHandler   
+FAULT_IRQHandler
 
-                
+
                B .
 
                 ENDP
