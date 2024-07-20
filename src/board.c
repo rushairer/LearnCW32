@@ -1,10 +1,10 @@
 /*
- * Á¢´´¿ª·¢°åÈíÓ²¼ş×ÊÁÏÓëÏà¹ØÀ©Õ¹°åÈíÓ²¼ş×ÊÁÏ¹ÙÍøÈ«²¿¿ªÔ´
- * ¿ª·¢°å¹ÙÍø£ºwww.lckfb.com
- * ¼¼ÊõÖ§³Ö³£×¤ÂÛÌ³£¬ÈÎºÎ¼¼ÊõÎÊÌâ»¶Ó­ËæÊ±½»Á÷Ñ§Ï°
- * Á¢´´ÂÛÌ³£ºhttps://oshwhub.com/forum
- * ¹Ø×¢bilibiliÕËºÅ£º¡¾Á¢´´¿ª·¢°å¡¿£¬ÕÆÎÕÎÒÃÇµÄ×îĞÂ¶¯Ì¬£¡
- * ²»¿¿Âô°å×¬Ç®£¬ÒÔÅàÑøÖĞ¹ú¹¤³ÌÊ¦Îª¼ºÈÎ
+ * ç«‹åˆ›å¼€å‘æ¿è½¯ç¡¬ä»¶èµ„æ–™ä¸ç›¸å…³æ‰©å±•æ¿è½¯ç¡¬ä»¶èµ„æ–™å®˜ç½‘å…¨éƒ¨å¼€æº
+ * å¼€å‘æ¿å®˜ç½‘ï¼šwww.lckfb.com
+ * æŠ€æœ¯æ”¯æŒå¸¸é©»è®ºå›ï¼Œä»»ä½•æŠ€æœ¯é—®é¢˜æ¬¢è¿éšæ—¶äº¤æµå­¦ä¹ 
+ * ç«‹åˆ›è®ºå›ï¼šhttps://oshwhub.com/forum
+ * å…³æ³¨bilibiliè´¦å·ï¼šã€ç«‹åˆ›å¼€å‘æ¿ã€‘ï¼ŒæŒæ¡æˆ‘ä»¬çš„æœ€æ–°åŠ¨æ€ï¼
+ * ä¸é å–æ¿èµšé’±ï¼Œä»¥åŸ¹å…»ä¸­å›½å·¥ç¨‹å¸ˆä¸ºå·±ä»»
  * Change Logs:
  * Date           Author       Notes
  * 2024-06-12     LCKFB-LP    first version
@@ -16,60 +16,57 @@
 #include "cw32f030_gpio.h"
 
 /******************************************************************
- * º¯ Êı Ãû ³Æ£ºboard_init
- * º¯ Êı Ëµ Ã÷£º³õÊ¼»¯¿ª·¢°å
- * º¯ Êı ĞÎ ²Î£ºÎŞ
- * º¯ Êı ·µ »Ø£ºÎŞ
- * ×÷       Õß£ºLC
- * ±¸       ×¢£ºÎŞ
-******************************************************************/
+ * å‡½ æ•° å ç§°ï¼šboard_init
+ * å‡½ æ•° è¯´ æ˜ï¼šåˆå§‹åŒ–å¼€å‘æ¿
+ * å‡½ æ•° å½¢ å‚ï¼šæ— 
+ * å‡½ æ•° è¿” å›ï¼šæ— 
+ * ä½œ       è€…ï¼šLC
+ * å¤‡       æ³¨ï¼šæ— 
+ ******************************************************************/
 void board_init(void)
 {
-	
-	RCC_HSE_Enable(RCC_HSE_MODE_OSC,8000000,RCC_HSE_DRIVER_NORMAL,RCC_HSE_FLT_CLOSE);//¿ªÆôHSEÊ±ÖÓ£¬HSEµÄÆµÂÊ·¶Î§Îª4MHz-32MHz
-	
-	RCC_HCLKPRS_Config(RCC_HCLK_DIV1);
-	
-	RCC_PLL_Enable(RCC_PLLSOURCE_HSEOSC,8000000,RCC_PLL_MUL_8);  //¿ªÆôPLL£¬PLLÊäÈëÎªHSE
-	
-	RCC_AHBPeriphClk_Enable(RCC_AHB_PERIPH_FLASH,ENABLE); // Ê¹ÄÜFLASHÊ±ÖÓ
-	
-	FLASH_SetLatency(FLASH_Latency_3);
-	
-	RCC_SysClk_Switch( RCC_SYSCLKSRC_PLL );   //ÇĞ»»ÏµÍ³Ê±ÖÓµ½PLL	
-	
-	RCC_SystemCoreClockUpdate(64000000);	 //¸üĞÂÏµÍ³Ê±ÖÓÆµÂÊ
-	
-	InitTick(64000000);                    //³õÊ¼»¯SysTick
 
+    RCC_HSE_Enable(RCC_HSE_MODE_OSC, 8000000, RCC_HSE_DRIVER_NORMAL, RCC_HSE_FLT_CLOSE); // å¼€å¯HSEæ—¶é’Ÿï¼ŒHSEçš„é¢‘ç‡èŒƒå›´ä¸º4MHz-32MHz
+
+    RCC_HCLKPRS_Config(RCC_HCLK_DIV1);
+
+    RCC_PLL_Enable(RCC_PLLSOURCE_HSEOSC, 8000000, RCC_PLL_MUL_8); // å¼€å¯PLLï¼ŒPLLè¾“å…¥ä¸ºHSE
+
+    RCC_AHBPeriphClk_Enable(RCC_AHB_PERIPH_FLASH, ENABLE); // ä½¿èƒ½FLASHæ—¶é’Ÿ
+
+    FLASH_SetLatency(FLASH_Latency_3);
+
+    RCC_SysClk_Switch(RCC_SYSCLKSRC_PLL); // åˆ‡æ¢ç³»ç»Ÿæ—¶é’Ÿåˆ°PLL
+
+    RCC_SystemCoreClockUpdate(64000000); // æ›´æ–°ç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡
+
+    InitTick(64000000); // åˆå§‹åŒ–SysTick
 }
 
 /******************************************************************
- * º¯ Êı Ãû ³Æ£ºdelay_us
- * º¯ Êı Ëµ Ã÷£ºÀûÓÃµÎ´ğ¶¨Ê±Æ÷ÑÓÊ±¶àÉÙus
- * º¯ Êı ĞÎ ²Î£º__us£ºÑÓÊ±µÄÊ±³¤£¨µ¥Î»us£©
- * º¯ Êı ·µ »Ø£ºÎŞ
- * ×÷       Õß£ºLC
- * ±¸       ×¢£ºÎŞ
-******************************************************************/
-void delay_us(unsigned long __us) 
+ * å‡½ æ•° å ç§°ï¼šdelay_us
+ * å‡½ æ•° è¯´ æ˜ï¼šåˆ©ç”¨æ»´ç­”å®šæ—¶å™¨å»¶æ—¶å¤šå°‘us
+ * å‡½ æ•° å½¢ å‚ï¼š__usï¼šå»¶æ—¶çš„æ—¶é•¿ï¼ˆå•ä½usï¼‰
+ * å‡½ æ•° è¿” å›ï¼šæ— 
+ * ä½œ       è€…ï¼šLC
+ * å¤‡       æ³¨ï¼šæ— 
+ ******************************************************************/
+void delay_us(unsigned long __us)
 {
     uint32_t ticks;
     uint32_t told, tnow, tcnt = 38;
 
-    // ¼ÆËãĞèÒªµÄÊ±ÖÓÊı = ÑÓ³ÙÎ¢ÃëÊı * Ã¿Î¢ÃëµÄÊ±ÖÓÊı
+    // è®¡ç®—éœ€è¦çš„æ—¶é’Ÿæ•° = å»¶è¿Ÿå¾®ç§’æ•° * æ¯å¾®ç§’çš„æ—¶é’Ÿæ•°
     ticks = __us * (64000000 / 1000000);
 
-    // »ñÈ¡µ±Ç°µÄSysTickÖµ
+    // è·å–å½“å‰çš„SysTickå€¼
     told = SysTick->VAL;
 
-    while (1)
-    {
-        // ÖØ¸´Ë¢ĞÂ»ñÈ¡µ±Ç°µÄSysTickÖµ
+    while (1) {
+        // é‡å¤åˆ·æ–°è·å–å½“å‰çš„SysTickå€¼
         tnow = SysTick->VAL;
 
-        if (tnow != told)
-        {
+        if (tnow != told) {
             if (tnow < told)
                 tcnt += told - tnow;
             else
@@ -77,34 +74,38 @@ void delay_us(unsigned long __us)
 
             told = tnow;
 
-            // Èç¹û´ïµ½ÁËĞèÒªµÄÊ±ÖÓÊı£¬¾ÍÍË³öÑ­»·
+            // å¦‚æœè¾¾åˆ°äº†éœ€è¦çš„æ—¶é’Ÿæ•°ï¼Œå°±é€€å‡ºå¾ªç¯
             if (tcnt >= ticks)
                 break;
         }
     }
 }
-//´îÅäµÎ´ğ¶¨Ê±Æ÷ÊµÏÖµÄ¾«È·msÑÓÊ±
-void delay_ms(unsigned long ms) 
+// æ­é…æ»´ç­”å®šæ—¶å™¨å®ç°çš„ç²¾ç¡®mså»¶æ—¶
+void delay_ms(unsigned long ms)
 {
-	delay_us( ms * 1000 );
+    delay_us(ms * 1000);
 }
 
-void delay_1us(unsigned long __us){ delay_us(__us); }
-void delay_1ms(unsigned long ms){ delay_ms(ms); }
-
-
+void delay_1us(unsigned long __us)
+{
+    delay_us(__us);
+}
+void delay_1ms(unsigned long ms)
+{
+    delay_ms(ms);
+}
 
 /******************************************************************************
  * EOF (not truncated)
  ******************************************************************************/
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
     /* USER CODE BEGIN 6 */

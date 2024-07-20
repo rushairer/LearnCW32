@@ -1,10 +1,10 @@
 /*
- * Á¢´´¿ª·¢°åÈíÓ²¼þ×ÊÁÏÓëÏà¹ØÀ©Õ¹°åÈíÓ²¼þ×ÊÁÏ¹ÙÍøÈ«²¿¿ªÔ´
- * ¿ª·¢°å¹ÙÍø£ºwww.lckfb.com
- * ¼¼ÊõÖ§³Ö³£×¤ÂÛÌ³£¬ÈÎºÎ¼¼ÊõÎÊÌâ»¶Ó­ËæÊ±½»Á÷Ñ§Ï°
- * Á¢´´ÂÛÌ³£ºhttps://oshwhub.com/forum
- * ¹Ø×¢bilibiliÕËºÅ£º¡¾Á¢´´¿ª·¢°å¡¿£¬ÕÆÎÕÎÒÃÇµÄ×îÐÂ¶¯Ì¬£¡
- * ²»¿¿Âô°å×¬Ç®£¬ÒÔÅàÑøÖÐ¹ú¹¤³ÌÊ¦Îª¼ºÈÎ
+ * ç«‹åˆ›å¼€å‘æ¿è½¯ç¡¬ä»¶èµ„æ–™ä¸Žç›¸å…³æ‰©å±•æ¿è½¯ç¡¬ä»¶èµ„æ–™å®˜ç½‘å…¨éƒ¨å¼€æº
+ * å¼€å‘æ¿å®˜ç½‘ï¼šwww.lckfb.com
+ * æŠ€æœ¯æ”¯æŒå¸¸é©»è®ºå›ï¼Œä»»ä½•æŠ€æœ¯é—®é¢˜æ¬¢è¿Žéšæ—¶äº¤æµå­¦ä¹ 
+ * ç«‹åˆ›è®ºå›ï¼šhttps://oshwhub.com/forum
+ * å…³æ³¨bilibiliè´¦å·ï¼šã€ç«‹åˆ›å¼€å‘æ¿ã€‘ï¼ŒæŽŒæ¡æˆ‘ä»¬çš„æœ€æ–°åŠ¨æ€ï¼
+ * ä¸é å–æ¿èµšé’±ï¼Œä»¥åŸ¹å…»ä¸­å›½å·¥ç¨‹å¸ˆä¸ºå·±ä»»
  * Change Logs:
  * Date           Author       Notes
  * 2024-06-12     LCKFB-LP    first version
@@ -15,26 +15,26 @@
 
 int main(void)
 {
-    board_init(); // ¿ª·¢°å³õÊ¼»¯
+    board_init(); // å¼€å‘æ¿åˆå§‹åŒ–
 
-    uart1_init(115200); // ´®¿Ú1²¨ÌØÂÊ115200
+    uart1_init(115200); // ä¸²å£1æ³¢ç‰¹çŽ‡115200
 
-    GPIO_InitTypeDef GPIO_InitStruct; // GPIO³õÊ¼»¯½á¹¹Ìå
+    GPIO_InitTypeDef GPIO_InitStruct; // GPIOåˆå§‹åŒ–ç»“æž„ä½“
 
-    __RCC_GPIOC_CLK_ENABLE(); // Ê¹ÄÜGPIOÊ±ÖÓ
+    __RCC_GPIOC_CLK_ENABLE(); // ä½¿èƒ½GPIOæ—¶é’Ÿ
 
-    GPIO_InitStruct.Pins  = GPIO_PIN_13;         // GPIOÒý½Å
-    GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP; // ÍÆÍìÊä³ö
-    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;     // Êä³öËÙ¶È¸ß
-    GPIO_Init(CW_GPIOC, &GPIO_InitStruct);       // ³õÊ¼»¯
+    GPIO_InitStruct.Pins  = GPIO_PIN_13;         // GPIOå¼•è„š
+    GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP; // æŽ¨æŒ½è¾“å‡º
+    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;     // è¾“å‡ºé€Ÿåº¦é«˜
+    GPIO_Init(CW_GPIOC, &GPIO_InitStruct);       // åˆå§‹åŒ–
 
     while (1) {
-        // ¸ßµçÆ½
+        // é«˜ç”µå¹³
         GPIO_WritePin(CW_GPIOC, GPIO_PIN_13, GPIO_Pin_SET);
         printf("[SET]\r\n");
         delay_ms(100);
 
-        // µÍµçÆ½
+        // ä½Žç”µå¹³
         GPIO_WritePin(CW_GPIOC, GPIO_PIN_13, GPIO_Pin_RESET);
         printf("[RESET]\r\n");
         delay_ms(100);

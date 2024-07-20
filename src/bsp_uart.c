@@ -1,10 +1,10 @@
 /*
- * Á¢´´¿ª·¢°åÈíÓ²¼ş×ÊÁÏÓëÏà¹ØÀ©Õ¹°åÈíÓ²¼ş×ÊÁÏ¹ÙÍøÈ«²¿¿ªÔ´
- * ¿ª·¢°å¹ÙÍø£ºwww.lckfb.com
- * ¼¼ÊõÖ§³Ö³£×¤ÂÛÌ³£¬ÈÎºÎ¼¼ÊõÎÊÌâ»¶Ó­ËæÊ±½»Á÷Ñ§Ï°
- * Á¢´´ÂÛÌ³£ºhttps://oshwhub.com/forum
- * ¹Ø×¢bilibiliÕËºÅ£º¡¾Á¢´´¿ª·¢°å¡¿£¬ÕÆÎÕÎÒÃÇµÄ×îĞÂ¶¯Ì¬£¡
- * ²»¿¿Âô°å×¬Ç®£¬ÒÔÅàÑøÖĞ¹ú¹¤³ÌÊ¦Îª¼ºÈÎ
+ * ç«‹åˆ›å¼€å‘æ¿è½¯ç¡¬ä»¶èµ„æ–™ä¸ç›¸å…³æ‰©å±•æ¿è½¯ç¡¬ä»¶èµ„æ–™å®˜ç½‘å…¨éƒ¨å¼€æº
+ * å¼€å‘æ¿å®˜ç½‘ï¼šwww.lckfb.com
+ * æŠ€æœ¯æ”¯æŒå¸¸é©»è®ºå›ï¼Œä»»ä½•æŠ€æœ¯é—®é¢˜æ¬¢è¿éšæ—¶äº¤æµå­¦ä¹ 
+ * ç«‹åˆ›è®ºå›ï¼šhttps://oshwhub.com/forum
+ * å…³æ³¨bilibiliè´¦å·ï¼šã€ç«‹åˆ›å¼€å‘æ¿ã€‘ï¼ŒæŒæ¡æˆ‘ä»¬çš„æœ€æ–°åŠ¨æ€ï¼
+ * ä¸é å–æ¿èµšé’±ï¼Œä»¥åŸ¹å…»ä¸­å›½å·¥ç¨‹å¸ˆä¸ºå·±ä»»
  * Change Logs:
  * Date           Author       Notes
  * 2024-06-12     LCKFB-LP    first version
@@ -13,114 +13,106 @@
 #include "stdio.h"
 
 /******************************************************************
- * º¯ Êı Ãû ³Æ£ºuart1_init
- * º¯ Êı Ëµ Ã÷£º³õÊ¼»¯USART1µÄ´®¿ÚÊÕ·¢¹¦ÄÜ
- * º¯ Êı ĞÎ ²Î£º__rate£º²¨ÌØÂÊ
- * º¯ Êı ·µ »Ø£ºÎŞ
- * ×÷       Õß£ºLC
- * ±¸       ×¢£ºÎŞ
-******************************************************************/
+ * å‡½ æ•° å ç§°ï¼šuart1_init
+ * å‡½ æ•° è¯´ æ˜ï¼šåˆå§‹åŒ–USART1çš„ä¸²å£æ”¶å‘åŠŸèƒ½
+ * å‡½ æ•° å½¢ å‚ï¼š__rateï¼šæ³¢ç‰¹ç‡
+ * å‡½ æ•° è¿” å›ï¼šæ— 
+ * ä½œ       è€…ï¼šLC
+ * å¤‡       æ³¨ï¼šæ— 
+ ******************************************************************/
 void uart1_init(uint32_t __rate)
 {
-	//ÅäÖÃRCC
-	RCC_AHBPeriphClk_Enable(DEBUG_USART_GPIO_CLK, ENABLE); // Ê¹ÄÜGPIOÊ±ÖÓ
-	DEBUG_USART_APBClkENx(DEBUG_USART_CLK, ENABLE);		   // Ê¹ÄÜ´®¿ÚÊ±ÖÓ
-	
-	// ÅäÖÃGPIO
-	GPIO_InitTypeDef GPIO_InitStructure;
-	
-    //UART TX RX ¸´ÓÃ
+    // é…ç½®RCC
+    RCC_AHBPeriphClk_Enable(DEBUG_USART_GPIO_CLK, ENABLE); // ä½¿èƒ½GPIOæ—¶é’Ÿ
+    DEBUG_USART_APBClkENx(DEBUG_USART_CLK, ENABLE);        // ä½¿èƒ½ä¸²å£æ—¶é’Ÿ
+
+    // é…ç½®GPIO
+    GPIO_InitTypeDef GPIO_InitStructure;
+
+    // UART TX RX å¤ç”¨
     DEBUG_USART_AFTX;
     DEBUG_USART_AFRX;
-	
-    GPIO_InitStructure.Pins = DEBUG_USART_TX_GPIO_PIN;			// Òı½Å
-    GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;				// ÍÆÍìÊä³ö
-    GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;					// Êä³öËÙ¶È¸ß
-    GPIO_Init(DEBUG_USART_TX_GPIO_PORT, &GPIO_InitStructure);	// ³õÊ¼»¯GPIO
-	
-    GPIO_InitStructure.Pins = DEBUG_USART_RX_GPIO_PIN;			
-    GPIO_InitStructure.Mode = GPIO_MODE_INPUT_PULLUP;			// ÉÏÀ­ÊäÈë
+
+    GPIO_InitStructure.Pins  = DEBUG_USART_TX_GPIO_PIN;       // å¼•è„š
+    GPIO_InitStructure.Mode  = GPIO_MODE_OUTPUT_PP;           // æ¨æŒ½è¾“å‡º
+    GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;               // è¾“å‡ºé€Ÿåº¦é«˜
+    GPIO_Init(DEBUG_USART_TX_GPIO_PORT, &GPIO_InitStructure); // åˆå§‹åŒ–GPIO
+
+    GPIO_InitStructure.Pins = DEBUG_USART_RX_GPIO_PIN;
+    GPIO_InitStructure.Mode = GPIO_MODE_INPUT_PULLUP; // ä¸Šæ‹‰è¾“å…¥
     GPIO_Init(DEBUG_USART_RX_GPIO_PORT, &GPIO_InitStructure);
-	
-	
-	// ÅäÖÃUART
-	USART_InitTypeDef USART_InitStructure;
-    USART_InitStructure.USART_BaudRate = __rate;				// ²¨ÌØÂÊ
-    USART_InitStructure.USART_Over = USART_Over_16;				// ÅäÖÃUSARTµÄ¹ı²ÉÑùÂÊ¡£
-    USART_InitStructure.USART_Source = USART_Source_PCLK;		// ÉèÖÃÊ±ÖÓÔ´
-    USART_InitStructure.USART_UclkFreq = DEBUG_USART_UclkFreq;  //ÉèÖÃUSARTÊ±ÖÓÆµÂÊ(ºÍÖ÷ÆµÒ»ÖÂ¼´¿É)
-    USART_InitStructure.USART_StartBit = USART_StartBit_FE;	 	//RXDÏÂ½µÑØ¿ªÊ¼
-    USART_InitStructure.USART_StopBits = USART_StopBits_1;		// Í£Ö¹Î»1
-    USART_InitStructure.USART_Parity = USART_Parity_No ;		// ²»Ê¹ÓÃĞ£Ñé
-    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; // ²»Ê¹ÓÃÁ÷¿Ø
-    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	// ÊÕ·¢Ä£Ê½
+
+    // é…ç½®UART
+    USART_InitTypeDef USART_InitStructure;
+    USART_InitStructure.USART_BaudRate            = __rate;                         // æ³¢ç‰¹ç‡
+    USART_InitStructure.USART_Over                = USART_Over_16;                  // é…ç½®USARTçš„è¿‡é‡‡æ ·ç‡ã€‚
+    USART_InitStructure.USART_Source              = USART_Source_PCLK;              // è®¾ç½®æ—¶é’Ÿæº
+    USART_InitStructure.USART_UclkFreq            = DEBUG_USART_UclkFreq;           // è®¾ç½®USARTæ—¶é’Ÿé¢‘ç‡(å’Œä¸»é¢‘ä¸€è‡´å³å¯)
+    USART_InitStructure.USART_StartBit            = USART_StartBit_FE;              // RXDä¸‹é™æ²¿å¼€å§‹
+    USART_InitStructure.USART_StopBits            = USART_StopBits_1;               // åœæ­¢ä½1
+    USART_InitStructure.USART_Parity              = USART_Parity_No;                // ä¸ä½¿ç”¨æ ¡éªŒ
+    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; // ä¸ä½¿ç”¨æµæ§
+    USART_InitStructure.USART_Mode                = USART_Mode_Rx | USART_Mode_Tx;  // æ”¶å‘æ¨¡å¼
     USART_Init(DEBUG_USARTx, &USART_InitStructure);
-	
-	//ÓÅÏÈ¼¶£¬ÎŞÓÅÏÈ¼¶·Ö×é
+
+    // ä¼˜å…ˆçº§ï¼Œæ— ä¼˜å…ˆçº§åˆ†ç»„
     NVIC_SetPriority(DEBUG_USART_IRQ, 0);
-    //UARTxÖĞ¶ÏÊ¹ÄÜ
+    // UARTxä¸­æ–­ä½¿èƒ½
     NVIC_EnableIRQ(DEBUG_USART_IRQ);
-	
-	//Ê¹ÄÜUARTx RCÖĞ¶Ï
+
+    // ä½¿èƒ½UARTx RCä¸­æ–­
     USART_ITConfig(DEBUG_USARTx, USART_IT_RC, ENABLE);
 }
 
-
 #if !defined(__MICROLIB)
-//²»Ê¹ÓÃÎ¢¿âµÄ»°¾ÍĞèÒªÌí¼ÓÏÂÃæµÄº¯Êı
+// ä¸ä½¿ç”¨å¾®åº“çš„è¯å°±éœ€è¦æ·»åŠ ä¸‹é¢çš„å‡½æ•°
 #if (__ARMCLIB_VERSION <= 6000000)
-//Èç¹û±àÒëÆ÷ÊÇAC5  ¾Í¶¨ÒåÏÂÃæÕâ¸ö½á¹¹Ìå
-struct __FILE
-{
-	int handle;
+// å¦‚æœç¼–è¯‘å™¨æ˜¯AC5  å°±å®šä¹‰ä¸‹é¢è¿™ä¸ªç»“æ„ä½“
+struct __FILE {
+    int handle;
 };
 #endif
 
 FILE __stdout;
 
-//¶¨Òå_sys_exit()ÒÔ±ÜÃâÊ¹ÓÃ°ëÖ÷»úÄ£Ê½
+// å®šä¹‰_sys_exit()ä»¥é¿å…ä½¿ç”¨åŠä¸»æœºæ¨¡å¼
 void _sys_exit(int x)
 {
-	x = x;
+    x = x;
 }
 #endif
 
 /* retarget the C library printf function to the USART */
 int fputc(int ch, FILE *f)
 {
-	// ·¢ËÍÒ»¸ö×Ö½Ú
+    // å‘é€ä¸€ä¸ªå­—èŠ‚
     USART_SendData(DEBUG_USARTx, (uint8_t)ch);
-	
-	// µÈ´ı·¢ËÍÍê³É
-	while( RESET == USART_GetFlagStatus(DEBUG_USARTx, USART_FLAG_TXE) ){}
-	
+
+    // ç­‰å¾…å‘é€å®Œæˆ
+    while (RESET == USART_GetFlagStatus(DEBUG_USARTx, USART_FLAG_TXE)) {}
+
     return ch;
 }
 
-
-
 /******************************************************************
- * º¯ Êı Ãû ³Æ£ºUART1_IRQHandler
- * º¯ Êı Ëµ Ã÷£º´®¿Ú1ÖĞ¶Ï·şÎñº¯Êı
- * º¯ Êı ĞÎ ²Î£ºÎŞ
- * º¯ Êı ·µ »Ø£ºÎŞ
- * ×÷       Õß£ºLC
- * ±¸       ×¢£ºÎŞ
-******************************************************************/
+ * å‡½ æ•° å ç§°ï¼šUART1_IRQHandler
+ * å‡½ æ•° è¯´ æ˜ï¼šä¸²å£1ä¸­æ–­æœåŠ¡å‡½æ•°
+ * å‡½ æ•° å½¢ å‚ï¼šæ— 
+ * å‡½ æ•° è¿” å›ï¼šæ— 
+ * ä½œ       è€…ï¼šLC
+ * å¤‡       æ³¨ï¼šæ— 
+ ******************************************************************/
 void UART1_IRQHandler(void)
 {
     uint8_t TxRxBuffer;
-	
-    if (USART_GetITStatus(CW_UART1, USART_IT_RC) != RESET)
-    {
-		// ½ÓÊÕÒ»¸ö×Ö½Ú
+
+    if (USART_GetITStatus(CW_UART1, USART_IT_RC) != RESET) {
+        // æ¥æ”¶ä¸€ä¸ªå­—èŠ‚
         TxRxBuffer = USART_ReceiveData_8bit(CW_UART1);
-		
-        USART_SendData_8bit(CW_UART1, TxRxBuffer); // ½«Êı¾İ·¢»ØÓÃÓÚÑéÖ¤
-		
-		// Çå³ı±êÖ¾Î»
+
+        USART_SendData_8bit(CW_UART1, TxRxBuffer); // å°†æ•°æ®å‘å›ç”¨äºéªŒè¯
+
+        // æ¸…é™¤æ ‡å¿—ä½
         USART_ClearITPendingBit(CW_UART1, USART_IT_RC);
     }
 }
-
-
